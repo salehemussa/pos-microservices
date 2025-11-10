@@ -4,8 +4,8 @@ A Point of Sale (POS) system built using Spring Boot 3.5.7, Java 21, MariaDB, Do
 
 This system supports JWT-based authentication and role-based authorization for Admin and Customer users.
 
-## 🚀 Features
-## 👤 Authentication Service
+## Features
+## Authentication Service
 
 Register and login users (JWT authentication).
 
@@ -15,19 +15,19 @@ Admins manage customers, products, and orders.
 
 Customers can make orders.
 
-🏷️ Product Service
+## Product Service
 
 Manage products (CRUD).
 
 Only accessible to Admins.
 
-🧾 Order Service
+## Order Service
 
 Customers can place orders.
 
 Admins can view and manage all orders.
 
-🌐 API Gateway
+## API Gateway
 
 Acts as a single entry point for all requests.
 
@@ -35,11 +35,11 @@ Routes requests to the correct microservice.
 
 Secures routes using JWT.
 
-🔎 Discovery Server (Eureka)
+## Discovery Server (Eureka)
 
 Enables service discovery and registration.
 
-🧱 Microservices Architecture
+## Microservices Architecture
 pos-microservices/
 │
 ├── discovery-server/          # Eureka Discovery Server
@@ -148,4 +148,5 @@ GitHub Desktop
 Saleh Mussa
 Software Developer
 📧 salehe.mussa.ngamilla@gmail.com
+
 
