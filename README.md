@@ -1,11 +1,11 @@
-🧾 POS Microservices System
+## 🧾 POS Microservices System
 
 A Point of Sale (POS) system built using Spring Boot 3.5.7, Java 21, MariaDB, Docker, and Eureka Discovery Server, following a Microservices Architecture.
 
 This system supports JWT-based authentication and role-based authorization for Admin and Customer users.
 
-🚀 Features
-👤 Authentication Service
+## 🚀 Features
+## 👤 Authentication Service
 
 Register and login users (JWT authentication).
 
@@ -148,3 +148,4 @@ GitHub Desktop
 Saleh Mussa
 Software Developer
 📧 salehe.mussa.ngamilla@gmail.com
+
