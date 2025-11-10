@@ -1,0 +1,88 @@
+services:
+  maria:
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  discovery:
+    build: ./services/discovery-server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - maria
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  api-gateway:
+    build: ./services/api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - discovery
+
+  auth-service:
+    build: ./services/auth-service
+    ports:
+      - "8100:8100"
+    depends_on:
+      - discovery
+      - maria
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://maria:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+
+  customer-service:
+    build: ./services/customer-service
+    ports:
+      - "8200:8200"
+    depends_on:
+      - discovery
+      - maria
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://maria:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+
+  product-service:
+    build: ./services/product-service
+    ports:
+      - "8300:8300"
+    depends_on:
+      - discovery
+      - maria
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://maria:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+
+  order-service:
+    build: ./services/order-service
+    ports:
+      - "8400:8400"
+    depends_on:
+      - discovery
+      - maria
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://maria:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+
+volumes:
+  mariadb-data:

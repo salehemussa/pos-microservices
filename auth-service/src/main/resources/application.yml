@@ -1,0 +1,21 @@
+server:
+  port: 8100
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mariadb://localhost:3306/posdb}
+    username: ${SPRING_DATASOURCE_USERNAME:posuser}
+    password: ${SPRING_DATASOURCE_PASSWORD:pospass}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET:ReplaceThisVerySecretKeyWhichIsLongEnough123!}
+  expiration-ms: 86400000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
