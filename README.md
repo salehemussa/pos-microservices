@@ -64,11 +64,11 @@ pos-microservices/
 └── README.md
 
  Local Setup (Without Docker)
-1️⃣ Clone the Repository
+1. Clone the Repository
 git clone https://github.com/<your-username>/pos-microservices.git
 cd pos-microservices
 
-2️⃣ Start MariaDB Locally
+2. Start MariaDB Locally
 
 Create a database for each service:
 
@@ -77,7 +77,7 @@ CREATE DATABASE product_db;
 CREATE DATABASE order_db;
 CREATE DATABASE customer_db;
 
-3️⃣ Configure .yml
+3. Configure .yml
 
 Each service has its own application.yml connecting to its respective database.
 
@@ -89,7 +89,7 @@ spring:
     username: root
     password:
 
-4️⃣ Run Services
+4. Run Services
 
 Start services one by one:
 
@@ -109,7 +109,7 @@ docker-compose up --build
 
 All services will start automatically and register with Eureka.
 
-🔗 API Endpoints
+ API Endpoints
 Auth Service
 Method	Endpoint	Description
 POST	/auth/register	Register new user
@@ -122,7 +122,7 @@ Order Service
 Method	Endpoint	Description
 GET	/orders	Get all orders
 POST	/orders	Create new order
-🧰 Tools You’ll Need
+ Tools You’ll Need
 
 Java 17
 
@@ -138,6 +138,7 @@ Contributors
 
 Saleh Mussa 
 Software Developer
-📧 salehe.mussa.ngamilla@gmail.com
+ salehe.mussa.ngamilla@gmail.com
 
-💻 GitHub Profile
+ GitHub Profile
+
