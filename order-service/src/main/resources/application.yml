@@ -1,3 +1,4 @@
+
 server:
   port: 8083
 
@@ -5,10 +6,9 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:mariadb://localhost:3306/order_db
-    username: root
-    password:
-    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:mariadb://localhost:3306/pos_db}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,4 +17,4 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}

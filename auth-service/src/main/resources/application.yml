@@ -1,21 +1,23 @@
 server:
-  port: 8100
+  port: 8081
 
 spring:
+  application:
+    name: auth-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mariadb://localhost:3306/posdb}
-    username: ${SPRING_DATASOURCE_USERNAME:posuser}
-    password: ${SPRING_DATASOURCE_PASSWORD:pospass}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mariadb://localhost:3306/pos_db}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
 
 jwt:
-  secret: ${JWT_SECRET:ReplaceThisVerySecretKeyWhichIsLongEnough123!}
+  secret: ${JWT_SECRET:mysecretkey}
   expiration-ms: 86400000
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
