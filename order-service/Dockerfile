@@ -1,5 +1,11 @@
-FROM openjdk:17-jdk-slim
+# Build stage
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY target/order-service-1.0.0.jar order-service.jar
-EXPOSE 8083
-ENTRYPOINT ["java", "-jar", "order-service.jar"]
+COPY . .
+RUN ./mvnw clean package -DskipTests
+
+# Runtime stage
+FROM eclipse-temurin:21-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/order-service-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-jar","/app/app.jar"]
